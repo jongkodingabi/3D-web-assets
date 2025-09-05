@@ -1,1 +1,57 @@
 @import "tailwindcss";
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  position: relative;
+  white-space: nowrap;
+}
+
+.logos::before,
+.logos::after {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos::before {
+  left: 0;
+  background: linear-gradient(to right, black, transparent);
+}
+
+.logos::after {
+  right: 0;
+  background: linear-gradient(to left, black, transparent);
+}
+
+.logos-slide {
+  display: inline-flex;
+  align-items: center;
+  animation: slide 60s linear infinite;
+  width: max-content;
+}
+
+.logos-slide img {
+  height: 50px;
+  width: auto;
+  margin: 0 40px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+/* Pause animation on hover */
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}

@@ -53,9 +53,8 @@ function initThreeJS(container) {
   // Buat environment map untuk refleksi
   const envMap = createEnvironmentMap();
 
-  // ========== TAMBAHKAN FLOOR GRID YANG FIXED ==========
   const createFloorGrid = () => {
-    const gridSize = 200;
+    const gridSize = 300;
     const gridDivisions = 80;
     const gridColor = 0x222222;
     const gridCenterColor = 0x444444;
@@ -170,10 +169,10 @@ function initThreeJS(container) {
   // Geometries yang lebih beragam dan menarik
   const geometries = [
     new THREE.BoxGeometry(0.8, 0.8, 0.8),
-    new THREE.SphereGeometry(0.6, 64, 64), // Meningkatkan detail sphere
-    new THREE.CylinderGeometry(0.5, 0.5, 1, 32), // Meningkatkan detail cylinder
-    new THREE.ConeGeometry(0.6, 1.2, 32), // Meningkatkan detail cone
-    new THREE.TorusGeometry(0.6, 0.3, 32, 64), // Meningkatkan detail torus
+    new THREE.SphereGeometry(0.6, 64, 64),
+    new THREE.CylinderGeometry(0.5, 0.5, 1, 32),
+    new THREE.ConeGeometry(0.6, 1.2, 32),
+    new THREE.TorusGeometry(0.6, 0.3, 32, 64),
     new THREE.OctahedronGeometry(0.7, 2), // Meningkatkan detail
     new THREE.TetrahedronGeometry(0.8, 2), // Meningkatkan detail
     new THREE.IcosahedronGeometry(0.6, 2), // Meningkatkan detail
@@ -281,7 +280,7 @@ function initThreeJS(container) {
       driftSpeed: 0.1 + Math.random() * 0.4,
       pulseSpeed: 0.5 + Math.random() * 1.0,
       pulseAmplitude: 0.1 + Math.random() * 0.2,
-      outlineVisible: Math.random() > 0.3, // 70% objek memiliki outline
+      outlineVisible: Math.random() > 0.3,
     };
 
     // Atur visibility outline
@@ -572,7 +571,7 @@ export default function HeroSection() {
             Explore our interactive 3D world
           </p>
           {/* Versi yang diperbaiki */}
-          <div className="flex flex-col sm:flex-row gap-6 mt-6">
+          <div className="flex flex-col items-center justify-center sm:flex-row gap-6 mt-6">
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-4 h-4 text-white" />
@@ -584,14 +583,14 @@ export default function HeroSection() {
               <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white">Mobile Responsive</span>
+              <span className="text-white">Interactive Model</span>
             </div>
 
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white">Fast Performance</span>
+              <span className="text-white">Ready to use</span>
             </div>
           </div>
           <div className="mt-8">
