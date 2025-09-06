@@ -29,9 +29,9 @@ export default function Home() {
       <main className="min-h-screen bg-black text-white font-sans  overflow-x-hidden">
         <Navbar />
         <Hero />
-        <About />
         {/* <ClientSlide /> */}
         <ClientSlide />
+        <About />
       </main>
     </>
   );
