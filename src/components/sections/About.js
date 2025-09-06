@@ -26,10 +26,9 @@ export default function About() {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
 
-    // 🔹 Pastikan canvas ikut rounded container
     renderer.domElement.style.width = "100%";
     renderer.domElement.style.height = "100%";
-    renderer.domElement.style.borderRadius = "0.5rem"; // sama dengan Tailwind rounded-md
+    renderer.domElement.style.borderRadius = "0.5rem"; 
 
     currentMount.appendChild(renderer.domElement);
 
@@ -63,7 +62,6 @@ export default function About() {
       }
     }
 
-    // Contoh load model
     loadModel("/assets/3D/chevalier_sword.glb");
 
     const animate = () => {
@@ -81,7 +79,6 @@ export default function About() {
   return (
     <section className="py-20 text-white">
       <div className="p-10 flex w-full gap-4 h-[500px]">
-        {/* 🔹 Tambah overflow-hidden agar rounded kepotong */}
         <div
           ref={mountRef}
           className="w-2/6 h-full rounded-md overflow-hidden border"
