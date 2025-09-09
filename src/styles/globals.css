@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+::selection {
+  background-color: blueviolet;
+  color: white;
+}
+
 @keyframes slide {
   0% {
     transform: translateX(0);

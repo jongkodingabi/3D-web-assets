@@ -213,191 +213,37 @@ export default function Service() {
       id="service"
       className="section flex items-center justify-center flex-col px-4 sm:px-6 lg:px-2"
     >
-      <h2 className="section-title text-white font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 text-center">
-        Our things
+      <h2 className="section-title text-white font-medium text-xl sm:text-xl lg:text-3xl mb-6 text-center w-full max-w-4xl">
+        All the high-quality 3D models—plus special releases, crafted for your
+        projects.
       </h2>
-      <p className="section-subtitle text-gray-400 mb-8 sm:mb-12 text-center px-4 sm:px-6 lg:px-10 max-w-5xl mx-auto text-sm sm:text-base">
-        Explore our diverse range of 3D assets, meticulously crafted to bring
-        your projects to life. From intricate models to dynamic animations, our
-        collection is designed to inspire and elevate your creative vision.
-      </p>
-
-      {/* Mobile Layout */}
-      <div className="block md:hidden w-full space-y-4">
-        {/* 3D Object - Display selected model */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full h-[250px] sm:h-[300px] border-4 border-purple-500 hover:border-8 transition-all rounded-2xl overflow-hidden relative group"
-          ref={mountRef}
-        >
-          <div className="absolute top-3 left-3 sm:top-5 sm:left-5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 transition duration-300">
-            <ShoppingBag className="text-white m-2 sm:m-4 w-4 h-4 sm:w-6 sm:h-6" />
-          </div>
-          <div className="flex-col justify-center items-start p-4 sm:p-6 absolute bottom-0 bg-gradient-to-t from-black w-full pointer-events-none transition-all">
-            <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-              {selectedObject.title}
-            </h3>
-            <p className="text-sm sm:text-md text-gray-300">
-              {selectedObject.description}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* All Models - Grid for mobile */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
-          {mockData.map((model, index) => (
-            <motion.div
-              key={model.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.8,
-                ease: "easeOut",
-                delay: index * 0.1,
-              }}
-              onClick={() => handleSetObject(model.id)}
-              className={`w-full h-[120px] sm:h-[140px] bg-zinc-900 p-0 rounded-2xl border-4 cursor-pointer transition-all duration-300 ${
-                selectedObject.id === model.id
-                  ? "border-purple-300 scale-105 shadow-lg shadow-purple-500/50"
-                  : "border-purple-400 hover:border-purple-300 hover:scale-105"
-              }`}
-            >
-              <div className="relative h-full">
-                {selectedObject.id === model.id && (
-                  <div className="absolute top-2 right-2 bg-purple-500 rounded-full p-1 z-10">
-                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
-                  </div>
-                )}
-                <Image
-                  src={model.thumbnail}
-                  alt={`${model.title} Thumbnail`}
-                  width={400}
-                  height={150}
-                  className="object-cover w-full h-2/3 overflow-hidden rounded-t-xl"
-                />
-                <div className="h-1/3 flex items-center justify-center px-2">
-                  <h2
-                    className={`text-xs sm:text-sm font-bold text-center ${
-                      selectedObject.id === model.id
-                        ? "text-purple-300"
-                        : "text-white"
-                    }`}
-                  >
-                    {model.title}
-                  </h2>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Tablet Layout */}
-      <div className="hidden md:block lg:hidden w-full">
-        <div className="flex flex-col gap-4">
-          {/* 3D Object - Display selected model */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full h-[350px] border-4 border-purple-500 hover:border-8 transition-all rounded-2xl overflow-hidden relative group"
-            ref={mountRef}
-          >
-            <div className="absolute top-5 left-5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 transition duration-300">
-              <ShoppingBag className="text-white m-4" />
-            </div>
-            <div className="flex-col justify-center items-start p-6 absolute bottom-0 bg-gradient-to-t from-black w-full pointer-events-none transition-all">
-              <h3 className="text-3xl font-semibold text-white mb-2">
-                {selectedObject.title}
-              </h3>
-              <p className="text-md text-gray-300">
-                {selectedObject.description}
-              </p>
-            </div>
-          </motion.div>
-
-          {/* All Models - Grid for tablet */}
-          <div className="grid grid-cols-4 gap-4 w-full">
-            {mockData.map((model, index) => (
-              <motion.div
-                key={model.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeOut",
-                  delay: index * 0.1,
-                }}
-                onClick={() => handleSetObject(model.id)}
-                className={`w-full h-[140px] bg-zinc-900 p-0 rounded-2xl border-4 cursor-pointer transition-all duration-300 ${
-                  selectedObject.id === model.id
-                    ? "border-purple-300 scale-105 shadow-lg shadow-purple-500/50"
-                    : "border-purple-400 hover:border-purple-300 hover:scale-105"
-                }`}
-              >
-                <div className="relative h-full">
-                  {selectedObject.id === model.id && (
-                    <div className="absolute top-2 right-2 bg-purple-500 rounded-full p-1 z-10">
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                    </div>
-                  )}
-                  <Image
-                    src={model.thumbnail}
-                    alt={`${model.title} Thumbnail`}
-                    width={400}
-                    height={150}
-                    className="object-cover w-full h-2/3 overflow-hidden rounded-t-xl"
-                  />
-                  <div className="h-1/3 flex items-center justify-center">
-                    <h2
-                      className={`text-sm font-bold text-center px-2 ${
-                        selectedObject.id === model.id
-                          ? "text-purple-300"
-                          : "text-white"
-                      }`}
-                    >
-                      {model.title}
-                    </h2>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Desktop Layout - Original grid system */}
-      <div className="hidden lg:block w-full max-w-[1500px] mx-auto">
-        <div className="grid grid-cols-4 grid-rows-5 gap-4 xl:gap-6">
+      <div className="w-full max-w-[1500px] mx-auto px-4 overflow-hidden mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6">
           {/* 3D Object - Display selected model */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="col-span-4 row-span-3 w-full h-[400px] xl:h-[450px] border-4 border-purple-500 hover:border-8 transition-all rounded-2xl overflow-hidden relative group"
+            className="col-span-1 sm:col-span-2 lg:col-span-4 w-full h-[250px] sm:h-[300px] lg:h-[400px] xl:h-[450px] border-4 border-purple-500 hover:border-8 transition-all rounded-2xl overflow-hidden relative group"
             ref={mountRef}
           >
             <div className="absolute top-5 left-5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 transition duration-300">
               <ShoppingBag className="text-white m-4" />
             </div>
-            <div className="col-span-2 row-span-3 flex-col justify-center items-start p-6 absolute bottom-0 bg-gradient-to-t from-black w-full pointer-events-none transition-all">
-              <h3 className="text-4xl font-semibold text-white mb-2">
+            <div className="flex flex-col justify-end items-start p-6 absolute bottom-0 bg-gradient-to-t from-black w-full pointer-events-none transition-all">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-2">
                 {selectedObject.title}
               </h3>
-              <p className="text-md text-gray-300">
+              <p className="text-sm sm:text-base text-gray-300">
                 {selectedObject.description}
               </p>
             </div>
           </motion.div>
 
-          {/* All Models - Map from mockData with selected state */}
+          {/* All Models - Map from mockData */}
           {mockData.map((model, index) => (
             <motion.div
               key={model.id}
@@ -410,7 +256,7 @@ export default function Service() {
                 delay: index * 0.1,
               }}
               onClick={() => handleSetObject(model.id)}
-              className={`row-span-2 row-start-4 w-full h-[150px] xl:h-[170px] bg-zinc-900 p-0 rounded-2xl border-4 cursor-pointer transition-all duration-300 ${
+              className={`w-full h-[120px] sm:h-[150px] xl:h-[170px] bg-zinc-900 rounded-2xl border-4 cursor-pointer transition-all duration-300 ${
                 selectedObject.id === model.id
                   ? "border-purple-300 scale-105 shadow-lg shadow-purple-500/50"
                   : "border-purple-400 hover:border-purple-300 hover:scale-105"
@@ -431,7 +277,7 @@ export default function Service() {
                 />
                 <div className="h-1/3 flex items-center justify-center">
                   <h2
-                    className={`text-lg font-bold text-center px-2 ${
+                    className={`text-sm sm:text-base lg:text-lg font-bold text-center px-2 ${
                       selectedObject.id === model.id
                         ? "text-purple-300"
                         : "text-white"
