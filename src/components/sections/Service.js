@@ -6,7 +6,7 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { ArrowBigLeftDash, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 
 const mockData = [
@@ -15,8 +15,9 @@ const mockData = [
     title: "iPhone 14 Pro Model",
     description:
       "A highly detailed 3D model of the latest iPhone 14 Pro. Perfect for product visualization and AR applications.",
-    modelUrl: "/assets/3D/Phone.glb",
+    modelUrl: "/assets/3D/iphone.glb",
     thumbnail: "/assets/iphone.jpg",
+    backgroundColor: 0xf5f5f0,
   },
   {
     id: 2,
@@ -25,14 +26,16 @@ const mockData = [
       "An intricately designed 3D model of a medieval sword, ideal for games and historical visualizations.",
     modelUrl: "/assets/3D/stylized_sword.glb",
     thumbnail: "/assets/3D_model_sword.jpeg",
+    backgroundColor: 0xb3b3ff,
   },
   {
     id: 3,
     title: "Modern House Model",
     description:
       "A contemporary 3D model of a modern house, suitable for architectural presentations and real estate marketing.",
-    modelUrl: "/assets/3D/Modern House.fbx",
+    modelUrl: "/assets/3D/modern_house.glb",
     thumbnail: "/assets/house.webp",
+    backgroundColor: 0xd1d1e0,
   },
   {
     id: 4,
@@ -41,6 +44,7 @@ const mockData = [
       "A stylish 3D text model that can be customized for various design projects and presentations.",
     modelUrl: "/assets/3D/twitch_logo_3d_text.glb",
     thumbnail: "/assets/text.avif",
+    backgroundColor: 0xcc99ff,
   },
 ];
 
@@ -143,7 +147,7 @@ export default function Service() {
 
     // Initialize Three.js scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x2e2e2e);
+    scene.background = new THREE.Color(selectedObject.backgroundColor);
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
@@ -188,6 +192,14 @@ export default function Service() {
   useEffect(() => {
     if (selectedObject && selectedObject.modelUrl) {
       loadModel(selectedObject.modelUrl);
+    }
+  }, [selectedObject]);
+
+  useEffect(() => {
+    if (sceneRef.current) {
+      sceneRef.current.background = new THREE.Color(
+        selectedObject.backgroundColor
+      );
     }
   }, [selectedObject]);
 
