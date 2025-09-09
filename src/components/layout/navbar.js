@@ -86,6 +86,35 @@ export default function Navbar() {
               >
                 About
               </a>
+              <div className="relative group">
+                <a
+                  href="#"
+                  className="text-gray-300 hover:text-white font-medium transition-colors duration-300"
+                >
+                  Categories
+                </a>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-10 bg-zinc-950 rounded-lg shadow-lg opacity-0 scale-95 group-hover:opacity-100 hover:scale-100 transition-all duration-300 ease-in-out min-w-xl">
+                  <div className="py-4 grid grid-cols-2">
+                    {categories.map((category, index) => (
+                      <a
+                        key={index}
+                        href="#"
+                        className={`block px-4 mx-4 py-2 text-sm text-gray-300 hover:bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-2xl hover:text-white transition-colors duration-300 ${
+                          category.active
+                            ? "bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 text-white rounded-2xl"
+                            : "bg-transparent"
+                        }`}
+                      >
+                        <category.icon
+                          className="inline-block mr-2"
+                          size={16}
+                        />
+                        {category.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </nav>
 
             {/* Search Bar - Always visible on desktop, conditional on mobile */}
@@ -139,7 +168,7 @@ export default function Navbar() {
           </div>
 
           {/* Category Navigation - Shows when scrolled with smooth transition */}
-          <div
+          {/* <div
             className={`hidden md:flex items-center gap-3 mt-4 pt-4 border-t border-gray-700/30 transition-all duration-500 ease-in-out overflow-hidden ${
               isScrolled
                 ? "max-h-20 opacity-100"
@@ -165,7 +194,7 @@ export default function Navbar() {
             <button className="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300 ml-2">
               View All Categories
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu */}
           <div
